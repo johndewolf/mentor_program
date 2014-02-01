@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   validates_presence_of :last_name
   validates_presence_of :email
   validates_presence_of :cohort
-  validates_presence_of :seeking_mentorship
-  validates_presence_of :giving_mentorship
+  validates_inclusion_of :giving_mentorship, in: [true, false]
+  validates_inclusion_of :seeking_mentorship, in: [true, false]
+
 end
