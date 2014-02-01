@@ -12,6 +12,12 @@
   <div><%= f.label :cohort %><br />
   <%= f.select :cohort, ['Fall 2013', 'Winter 2013', 'Spring 2014'], :autofocus => true %></div>
 
+  <div><%= f.label :seeking_mentorship %><br />
+  <%= f.select :seeking_mentorship,  [["Yes", true], ["No", false]] %></div>
+
+  <div><%= f.label :giving_mentorship %><br />
+  <%= f.select :giving_mentorship,  [["No", false], ["Yes", true]] %></div>
+
   <div><%= f.label :email %><br />
   <%= f.email_field :email, :autofocus => true %></div>
 

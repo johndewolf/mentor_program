@@ -14,6 +14,8 @@ feature 'user sign up', %Q{
     fill_in 'Password', with: 'password'
     fill_in 'Password confirmation', with: 'password'
     select 'Winter 2013', from: 'Cohort'
+    select 'Yes', from: 'Seeking mentorship'
+    select 'Yes', from: 'Giving mentorship'
     click_button 'Sign up'
     expect(page).to have_content("Welcome! You have signed up successfully" )
   end

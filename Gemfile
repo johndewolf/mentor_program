@@ -38,6 +38,8 @@ group :development, :test do
   gem 'capybara'
   gem 'rspec-rails'
   gem 'launchy'
+  gem 'shoulda-matchers'
+  gem 'valid_attribute'
 end
 
 # Use ActiveModel has_secure_password

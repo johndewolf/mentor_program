@@ -7,6 +7,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :first_name, null: false
       t.string :last_name, null: false
       t.string :cohort, null: false
+      t.boolean :seeking_mentorship, default: true
+      t.boolean :giving_mentorship, default: false
       ## Recoverable
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at
