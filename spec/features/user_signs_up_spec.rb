@@ -13,7 +13,7 @@ feature 'user sign up', %Q{
     fill_in 'Email', with: 'test@aol.com'
     fill_in 'Password', with: 'password'
     fill_in 'Password confirmation', with: 'password'
-    select 'Winter 2014', from: 'Cohort'
+    select 'Winter 2013', from: 'Cohort'
     click_button 'Sign up'
     expect(page).to have_content("Welcome! You have signed up successfully" )
   end
