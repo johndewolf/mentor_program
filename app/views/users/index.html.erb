@@ -1,0 +1,9 @@
+<h1>Users Giving Mentorship</h1>
+<% @giving_mentorship.each do |user| %>
+  <%= user.first_name %>
+<% end %>
+
+<h1>Users Seeking Mentorship</h1>
+<% @seeking_mentorship.each do |user| %>
+  <%= user.first_name %>
+<% end %>

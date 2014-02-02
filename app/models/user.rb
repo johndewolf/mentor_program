@@ -11,4 +11,12 @@ class User < ActiveRecord::Base
   validates_inclusion_of :giving_mentorship, in: [true, false]
   validates_inclusion_of :seeking_mentorship, in: [true, false]
 
+  def self.giving_mentorship
+    where('giving_mentorship IS true')
+  end
+
+  def self.seeking_mentorship
+    where('seeking_mentorship IS true')
+  end
+
 end
