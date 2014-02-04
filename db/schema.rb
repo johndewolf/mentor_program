@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20140204003103) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "mentorship_requests", force: true do |t|
+  create_table "mentorships", force: true do |t|
     t.integer  "user_id",     null: false
     t.integer  "friend_id",   null: false
     t.string   "status"

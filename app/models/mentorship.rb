@@ -1,4 +1,4 @@
-class Mentorships < ActiveRecord::Base
+class Mentorship < ActiveRecord::Base
   belongs_to :user
   belongs_to :friend, class_name: "User", foreign_key: "friend_id"
    
@@ -10,7 +10,7 @@ class Mentorships < ActiveRecord::Base
   end
 
   def self.request(user, friend)
-    unless user == friend || Friendship.exists?(user, friend)
+    unless user == friend || exists?(user, friend)
       transaction do
         create(user: user, friend: friend, status: 'pending')
         create(user: friend, friend: user, status: 'requested')
