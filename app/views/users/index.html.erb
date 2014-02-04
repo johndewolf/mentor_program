@@ -1,9 +1,11 @@
 <h1>Users Giving Mentorship</h1>
 <% @giving_mentorship.each do |user| %>
   <%= user.first_name %>
+  <%= link_to 'Request Mentorship', new_mentorship_request_path, :method => "get" %> 
 <% end %>
 
 <h1>Users Seeking Mentorship</h1>
 <% @seeking_mentorship.each do |user| %>
   <%= user.first_name %>
+  <%= link_to 'Offer to Give Mentorship', new_mentorship_request_path, :method => "get" %> 
 <% end %>
