@@ -2,10 +2,13 @@ class MentorshipsController < ApplicationController
 
   before_filter :setup_mentorships
   def index
-    binding.pry
     Mentorship.request(@user, @friend)
     flash[:notice] = "Request has been sent."
     redirect_to users_path
+  end
+
+  def show
+    @user = current_user
   end
 
   private

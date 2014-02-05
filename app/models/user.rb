@@ -11,6 +11,23 @@ class User < ActiveRecord::Base
   validates_inclusion_of :giving_mentorship, in: [true, false]
   validates_inclusion_of :seeking_mentorship, in: [true, false]
 
+  has_many :mentorships
+  has_many :friends,
+    through: :mentorships,
+    conditions: "status = 'accepted'"
+
+  has_many :requested_friends,
+    through: :mentorships,
+    source: :friend,
+    conditions: "status = 'requested'"
+ 
+  has_many :pending_friends,
+    through: :mentorships,
+    source: :friend,
+    conditions: "status = 'pending'"
+
+
+
   def self.giving_mentorship
     where('giving_mentorship IS true')
   end
