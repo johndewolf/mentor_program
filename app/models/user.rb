@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable 
+         :recoverable, :rememberable, :trackable, :validatable
 
   validates_presence_of :first_name
   validates_presence_of :last_name
@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
     through: :mentorships,
     source: :friend,
     conditions: "status = 'requested'"
- 
+
   has_many :pending_friends,
     through: :mentorships,
     source: :friend,
@@ -35,5 +35,6 @@ class User < ActiveRecord::Base
   def self.seeking_mentorship
     where('seeking_mentorship IS true')
   end
+
 
 end
