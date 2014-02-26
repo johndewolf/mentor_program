@@ -17,9 +17,11 @@ ActiveRecord::Schema.define(version: 20140204003103) do
   enable_extension "plpgsql"
 
   create_table "mentorships", force: true do |t|
-    t.integer  "user_id",     null: false
-    t.integer  "friend_id",   null: false
+    t.integer  "user_id",                          null: false
+    t.integer  "friend_id",                        null: false
+    t.boolean  "giving_mentorship", default: true, null: false
     t.string   "status"
+    t.string   "message"
     t.datetime "accepted_at"
     t.datetime "created_at"
     t.datetime "updated_at"

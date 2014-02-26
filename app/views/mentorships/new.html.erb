@@ -1,0 +1,16 @@
+
+<% if @mentorship.giving_mentorship == false %>
+  <h1>New Mentorship Request</h2>
+
+  <%= simple_form_for @mentorship do |f| %>
+    <%= f.error_notification %>
+    <%= f.input :message, placeholder: 'Optional' %>
+    <%= f.submit 'Request Mentorship' %>
+  <% end %>
+<% else %>
+  <h1>New Mentorship Offer</h1>
+    <%= simple_form_for @mentorship do |f| %>
+    <%= f.input :message, placeholder: 'Optional' %>
+    <%= f.submit 'Send Request' %>
+  <% end %>
+<% end %>

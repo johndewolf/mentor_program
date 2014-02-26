@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   validates_inclusion_of :seeking_mentorship, in: [true, false]
 
   has_many :mentorships
+
   has_many :friends,
     through: :mentorships,
     conditions: "status = 'accepted'"
@@ -19,12 +20,14 @@ class User < ActiveRecord::Base
   has_many :requested_friends,
     through: :mentorships,
     source: :friend,
-    conditions: "status = 'requested'"
+    conditions: "status = 'requested'",
+    order: :created_at
 
   has_many :pending_friends,
     through: :mentorships,
     source: :friend,
-    conditions: "status = 'pending'"
+    conditions: "status = 'pending'",
+    order: :created_at
 
 
 

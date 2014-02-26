@@ -1,12 +1,12 @@
-<h1>Users Giving Mentorship</h1>
-<% @giving_mentorship.each do |user| %>
-  <%= user.first_name %>
-  <% unless Mentorship.exists?(current_user, user) %>
-    <%= link_to 'Request Mentorship', { :controller => "mentorships",
-        :action => "create", :id => user.email },
-        :confirm => "Send request to be mentored by #{user.first_name}
-         #{user.last_name}?" %> 
-  <% end %>
+<h1>Users Offering Mentorship</h1>
+<ul>
+  <% @giving_mentorship.each do |user| %>
+    <%= user.first_name %>
+    <% unless Mentorship.exists?(current_user, user) %>
+      <%= link_to 'Request Mentorship', new_mentorship_path(id: user.email, giving_mentorship: false  ), action: 'get' %>
+
+    <% end %>
+</ul>
 <% end %>
 
 <h1>Users Seeking Mentorship</h1>
@@ -14,8 +14,8 @@
   <%= user.first_name %>
   <% unless Mentorship.exists?(current_user, user) %>
     <%= link_to 'Request Mentorship', { :controller => "mentorships",
-        :action => "create", :id => user.email },
+        action: "create", :id => user.email, giving_mentorship: false }, method: "post",
         :confirm => "Send friend request to mentor #{user.first_name}
-         #{user.last_name}?" %> 
+         #{user.last_name}?" %>
   <% end %>
 <% end %>

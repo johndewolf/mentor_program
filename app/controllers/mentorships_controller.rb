@@ -1,14 +1,19 @@
 class MentorshipsController < ApplicationController
 
   before_filter :setup_mentorships
-  def index
-    Mentorship.request(@user, @friend)
-    flash[:notice] = "Request has been sent."
-    redirect_to users_path
-  end
 
   def show
     @user = current_user
+  end
+
+  def new
+    @mentorship = Mentorship.new(giving_mentorship: params[:giving_mentorship])
+  end
+
+  def create
+    Mentorship.request(@user, @friend, params[:giving_mentorship])
+    flash[:notice] = "Request has been sent."
+    redirect_to users_path
   end
 
   private
@@ -18,7 +23,7 @@ class MentorshipsController < ApplicationController
   end
 
   def mentorship_params
-    params.require(:checkpoint).permit(:user, :friend,
+    params.require(:mentorship).permit(:user, :friend, :giving_mentorship,
     :status)
   end
 end
