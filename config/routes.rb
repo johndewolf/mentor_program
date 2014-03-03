@@ -1,7 +1,7 @@
 MentorProgram::Application.routes.draw do
   devise_for :users
 
-  resources :users, only: [:index]
+  resources :users, collection: { hub: :get }
   resources :mentorships
 
   # The priority is based upon order of creation: first created -> highest priority.
