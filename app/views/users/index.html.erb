@@ -4,10 +4,9 @@
     <li><%= user.first_name %>
     <% unless Mentorship.exists?(current_user, user) %>
       <%= link_to 'Request Mentorship', { controller: "mentorships",
-        action: "create", id: user.email, giving_mentorship: true }, method: "post",
+        action: "create", id: user.id, giving_mentorship: true }, method: "post",
         :confirm => "Send friend request to mentor #{user.first_name}
          #{user.last_name}?" %></li>
-
     <% end %>
   <% end %>
 </ul>
@@ -18,7 +17,7 @@
     <li><%= user.first_name %>
     <% unless Mentorship.exists?(current_user, user) %>
       <%= link_to 'Offer Mentorship', { :controller => "mentorships",
-          action: "create", :id => user.email, giving_mentorship: false }, method: "post",
+          action: "create", :id => user.id, giving_mentorship: false }, method: "post",
           :confirm => "Send friend request to mentor #{user.first_name}
            #{user.last_name}?" %></li>
     <% end %>

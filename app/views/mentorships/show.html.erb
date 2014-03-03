@@ -1,30 +1,7 @@
-<table>
-<tr>
-<th colspan="3" align="left">
-<%= pluralize(@user.friends.count, "RailsSpace friend") %>
-</th>
-</tr>
- 
-<% @user.friends.each do |friend| %>
- 
-<tr>
- 
-<td width="50">
- 
-<%= link_to thumbnail_tag(friend), profile_for(friend) %>
- 
-</td>
- 
-<td><%= link_to friend.name, profile_for(friend) %></td>
- 
-<td>
- 
-<% unless hide_edit_links? %>
- 
-<%= link_to "Delete",
- 
-{ :controller => "friendship", :action => "delete",
- 
-:id => friend.screen_name },
- 
-:confirm =>
+<h1>Pending Mentorships</h1>
+<ul>
+<% @mentorships.where("status = 'pending'").each do |mentorship| %>
+  <li><%= mentorship.friend.first_name + ' ' +mentorship.friend.last_name %>
+  <%= link_to "Cancel Request", { controller: "mentorships", action: "destroy", id: mentorship.friend.id }, method: :delete %>
+<% end %>
+</ul>

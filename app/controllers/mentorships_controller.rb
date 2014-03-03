@@ -4,14 +4,16 @@ class MentorshipsController < ApplicationController
 
   def show
     @user = current_user
+    @mentorships = Mentorship.where("user_id = ?", current_user).includes(:friend)
   end
 
-  def new
-    @mentorship = Mentorship.new(giving_mentorship: params[:giving_mentorship])
+  def destroy
+    Mentorship.end_mentorship(@user, @friend)
+    flash[:notice] = "Friendship with #{@friend.first_name} deleted!"
+    redirect_to mentorship_path(current_user)
   end
 
   def create
-    binding.pry
     Mentorship.request(@user, @friend, params[:giving_mentorship])
     flash[:notice] = "Request has been sent."
     redirect_to users_path
@@ -20,7 +22,7 @@ class MentorshipsController < ApplicationController
   private
   def setup_mentorships
     @user = current_user
-    @friend = User.find_by_email(params[:id])
+    @friend = User.find(params[:id])
     @giving_mentorship = params[:giving_mentorship]
   end
 
