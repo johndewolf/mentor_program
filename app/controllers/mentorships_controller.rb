@@ -19,6 +19,13 @@ class MentorshipsController < ApplicationController
     redirect_to users_path
   end
 
+  def update
+    setup_mentorships
+    Mentorship.accept(@user, @friend)
+    flash[:notice] = "Mentorship Accept!"
+    redirect_to mentorships_path
+  end
+
   private
   def setup_mentorships
     @user = current_user
