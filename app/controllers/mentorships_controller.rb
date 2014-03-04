@@ -8,7 +8,7 @@ class MentorshipsController < ApplicationController
   def destroy
     setup_mentorships
     Mentorship.end_mentorship(@user, @friend)
-    flash[:notice] = "Friendship with #{@friend.first_name} deleted!"
+    flash[:notice] = "Mentorship with #{@friend.first_name} deleted!"
     redirect_to mentorships_path
   end
 
@@ -22,7 +22,7 @@ class MentorshipsController < ApplicationController
   def update
     setup_mentorships
     Mentorship.accept(@user, @friend)
-    flash[:notice] = "Mentorship Accept!"
+    flash[:notice] = "Mentorship Accepted!"
     redirect_to mentorships_path
   end
 
