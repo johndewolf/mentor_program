@@ -2,6 +2,6 @@
 <ul>
 <% @mentorships.where("status = 'pending'").each do |mentorship| %>
   <li><%= mentorship.friend.first_name + ' ' +mentorship.friend.last_name %>
-  <%= link_to "Cancel Request", { controller: "mentorships", action: "destroy", id: mentorship.friend.id }, method: :delete %>
+  <%= link_to "Cancel Request", mentorship_path(mentorship, id: mentorship.friend.id), method: :delete %>
 <% end %>
 </ul>

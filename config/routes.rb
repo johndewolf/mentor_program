@@ -2,7 +2,10 @@ MentorProgram::Application.routes.draw do
   devise_for :users
 
   resources :users, collection: { hub: :get }
-  resources :mentorships
+
+  resources :mentorships do
+    delete 'cancel'
+  end
 
 
   # The priority is based upon order of creation: first created -> highest priority.

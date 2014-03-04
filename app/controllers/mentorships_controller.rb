@@ -1,19 +1,19 @@
 class MentorshipsController < ApplicationController
 
-  before_filter :setup_mentorships
-
-  def show
+  def index
     @user = current_user
     @mentorships = Mentorship.where("user_id = ?", current_user).includes(:friend)
   end
 
   def destroy
+    setup_mentorships
     Mentorship.end_mentorship(@user, @friend)
     flash[:notice] = "Friendship with #{@friend.first_name} deleted!"
-    redirect_to mentorship_path(current_user)
+    redirect_to mentorships_path
   end
 
   def create
+    setup_mentorships
     Mentorship.request(@user, @friend, params[:giving_mentorship])
     flash[:notice] = "Request has been sent."
     redirect_to users_path
