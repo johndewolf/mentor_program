@@ -1,8 +1,12 @@
 <h1>Pending Mentorships</h1>
 <ul>
-<% @mentorships.where("status = 'pending'").each do |mentorship| %>
+<% @mentorships.where("status = 'pending' OR status = 'requested'").each do |mentorship| %>
   <li><%= mentorship.friend.first_name + ' ' +mentorship.friend.last_name %>
-  <%= link_to "Cancel Request", mentorship_path(mentorship, id: mentorship.friend.id), method: :delete %>
+  <% if mentorship.status == 'pending' %>
+    <%= link_to "Cancel Request", mentorship_path(mentorship, id: mentorship.friend.id), method: :delete %>
+  <% else %>
+    <%= link_to "Deny Request", mentorship_path(mentorship, id: mentorship.friend.id), method: :delete %>
+  <% end %>
   <%= link_to "Accept Request", mentorship_path(mentorship, id: mentorship.friend.id), method: :put %></li>
 <% end %>
 </ul>
